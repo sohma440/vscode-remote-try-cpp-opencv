@@ -38,3 +38,26 @@ RUN apt-get update \
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=
+
+RUN cd ~ \
+    && git clone -b 4.0.1 https://github.com/opencv/opencv.git --depth 1
+
+RUN cd ~/opencv \
+    && mkdir build \
+    && cd build \
+    && cmake \
+      -D BUILD_opencv_highgui=OFF \
+      -D BUILD_DOCS=OFF \
+      -D BUILD_EXAMPLES=OFF \
+      -D BUILD_TESTS=OFF \
+      -D BUILD_PERF_TESTS=OFF \
+      -D CMAKE_BUILD_TYPE=Release \
+      -D BUILD_opencv_calib3d=OFF \
+      -D BUILD_opencv_features2d=OFF \
+      -D BUILD_opencv_objdetect=OFF \
+      -D BUILD_opencv_photo=OFF \
+      -D BUILD_stitching=OFF \
+      -D BUILD_gapi=OFF \
+      -D CMAKE_INSTALL_PREFIX=/usr/local .. \
+    && make \
+    && make install
