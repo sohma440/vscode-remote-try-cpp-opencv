@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
+#include <opencv2/opencv.hpp>
 
 using namespace std;
 
-int main() {
-    cout << "Hello World\n";
-    cout << "Input: ";
-    string data;
-    getline(cin, data);
-    cout << "Output: " << data << "\n\n";
+int main()
+{
+    cv::Mat img = cv::Mat::zeros(cv::Size(512, 512), CV_8UC1);
+
     return 0;
 }
